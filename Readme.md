@@ -468,6 +468,8 @@ http://stackoverflow.com/questions/3394835/args-and-kwargs
 
 好了，鉴于情况 1 跟 情况 2 都有了解决方案，python 自然就不需要函数重载了。
 
+Guido对于paython重载的解释与实现：<https://www.artima.com/weblogs/viewpost.jsp?thread=101605>
+
 ## 14 新式类和旧式类
 
 这个面试官问了,我说了老半天,不知道他问的真正意图是什么.
@@ -1149,19 +1151,19 @@ GET会方法请求指定的页面信息，并返回响应主体，GET被认为�
 
 HEAD
 
-HEAD方法与GET方法一样，都是向服务器发出指定资源的请求。但是，服务器在响应HEAD请求时不会回传资源的内容部分，即：响应主体。这样，我们可以不传输全部内容的情况下，就可以获取服务器的响应头信息。HEAD方法常被用于客户端查看服务器的性能。
+**HEAD方法与GET方法一样，都是向服务器发出指定资源的请求。但是，服务器在响应HEAD请求时不会回传资源的内容部分，即：响应主体。**这样，我们可以不传输全部内容的情况下，就可以获取服务器的响应头信息。HEAD方法常被用于客户端查看服务器的性能。
 
 POST
 
-POST请求会 向指定资源提交数据，请求服务器进行处理，如：表单数据提交、文件上传等，请求数据会被包含在请求体中。POST方法是非幂等的方法，因为这个请求可能会创建新的资源或/和修改现有资源。
+POST请求会 向指定资源提交数据，请求服务器进行处理，如：表单数据提交、文件上传等，请求数据会被包含在请求体中。**POST方法是非幂等的方法**，因为这个请求可能会创建新的资源或/和修改现有资源。
 
 PUT
 
-PUT请求会身向指定资源位置上传其最新内容，PUT方法是幂等的方法。通过该方法客户端可以将指定资源的最新数据传送给服务器取代指定的资源的内容。
+PUT请求会伸向指定资源位置上传其最新内容，**PUT方法是幂等的方法**。通过该方法客户端可以将指定资源的最新数据传送给服务器取代指定的资源的内容。
 
 DELETE
 
-DELETE请求用于请求服务器删除所请求URI（统一资源标识符，Uniform Resource Identifier）所标识的资源。DELETE请求后指定资源会被删除，DELETE方法也是幂等的。
+DELETE请求用于请求服务器删除所请求URI（统一资源标识符，Uniform Resource Identifier）所标识的资源。DELETE请求后指定资源会被删除，**DELETE方法也是幂等的**。
 
 CONNECT
 
@@ -1169,7 +1171,7 @@ CONNECT方法是HTTP/1.1协议预留的，能够将连接改为管道方式的�
 
 OPTIONS
 
-OPTIONS请求与HEAD类似，一般也是用于客户端查看服务器的性能。 这个方法会请求服务器返回该资源所支持的所有HTTP请求方法，该方法会用’*’来代替资源名称，向服务器发送OPTIONS请求，可以测试服务器功能是否正常。JavaScript的XMLHttpRequest对象进行CORS跨域资源共享时，就是使用OPTIONS方法发送嗅探请求，以判断是否有对指定资源的访问权限。 允许
+OPTIONS请求与HEAD类似，一般也是用于客户端查看服务器的性能。 这个方法会请求服务器返回该资源所支持的所有HTTP请求方法，该方法会用’*’来代替资源名称，向服务器发送OPTIONS请求，可以测试服务器功能是否正常。JavaScript的XMLHttpRequest对象进行CORS跨域资源共享时，就是使用OPTIONS方法发送**嗅探请求**，以判断是否有对指定资源的访问权限。 
 
 TRACE
 
@@ -1183,13 +1185,13 @@ PATCH
 
 PATCH方法出现的较晚，它在2010年的RFC 5789标准中被定义。PATCH请求与PUT请求类似，同样用于资源的更新。二者有以下两点不同：
 
-但PATCH一般用于资源的部分更新，而PUT一般用于资源的整体更新。 
-当资源不存在时，PATCH会创建一个新的资源，而PUT只会对已在资源进行更新。
+**但PATCH一般用于资源的部分更新，而PUT一般用于资源的整体更新。 
+当资源不存在时，PATCH会创建一个新的资源，而PUT只会对已在资源进行更新。**
 
 ## 21 Ajax
 AJAX,Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）, 是与在不重新加载整个页面的情况下，与服务器交换数据并更新部分网页的技术。
 
-# *NIX
+# UNIX
 
 ## unix进程间通信方式(IPC)
 
@@ -1223,7 +1225,15 @@ AVL是严格平衡树，因此在增加或者删除节点的时候，根据不�
 
 ## 1 台阶问题/斐波那契
 
+严格的斐波那契：
+
+- 数列推导式：`F(1)=1，F(2)=1, F(n)=F(n-1)+F(n-2)（n>=3，n∈N*）`
+
+- 数据结果：`1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233，377 ... ...`
+
 一只青蛙一次可以跳上1级台阶，也可以跳上2级。求该青蛙跳上一个n级的台阶总共有多少种跳法。
+
+>  跳台阶跟斐波那契稍有不同，在2级台阶的时候有两种方法。 `1, 2, 3, 5, 8, 13 ... ...`
 
 ```python
 fib = lambda n: n if n <= 2 else fib(n - 1) + fib(n - 2)
@@ -1337,9 +1347,11 @@ l2 = []
 
 sorted排序并且用列表推导式.
 
+```python
 l = ['b','c','d','b','c','a','a']
 [single.append(i) for i in sorted(l) if i not in single]
 print single
+```
 
 ## 6 链表成对调换
 
@@ -1375,16 +1387,17 @@ dict = {'name':'earth', 'port':'80'}
 
 ```python
 items=[('name','earth'),('port','80')]
-dict2=dict(items)
-dict1=dict((['name','earth'],['port','80']))
+dict2=dict(items)    # {'name': 'earth', 'port': '80'}
+dict1=dict((['name','earth'],['port','80']))    # {'name': 'earth', 'port': '80'}
 ```
 
 ### 3 fromkeys()方法
 
 ```python
-dict1={}.fromkeys(('x','y'),-1)
+>>> dict1={}.fromkeys(('x','y'),-1)
 dict={'x':-1,'y':-1}
-dict2={}.fromkeys(('x','y'))
+
+>>> dict2={}.fromkeys(('x','y'))
 dict2={'x':None, 'y':None}
 ```
 
@@ -1562,8 +1575,9 @@ def node(l1, l2):
 
 思路: http://humaoli.blog.163.com/blog/static/13346651820141125102125995/
 
-
 ## 10 二分查找
+
+给出一个已经排好序的列表,注意是已经排好序的,查找指定元素在列表中的位置
 
 
 ```python
@@ -1591,6 +1605,12 @@ print binary_search(mylist,3)
 
 ## 11 快排
 
+```
+通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，
+然后再按此方法对这两部分数据分别进行快速排序，
+整个排序过程可以递归进行，以此达到整个数据变成有序序列。
+```
+
 ```python
 #coding:utf-8
 def quicksort(list):
@@ -1614,7 +1634,6 @@ print quicksort([2,4,6,7,1,2,5])
 
 
 ```python
-
 #coding:utf-8
 #values是硬币的面值values = [ 25, 21, 10, 5, 1]
 #valuesCounts   钱币对应的种类数
